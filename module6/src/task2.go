@@ -15,6 +15,7 @@ func main() {
 	fmt.Print("Введите второе число: ")
 	fmt.Scan(&secondNum)
 
+	// Сам цикл.
 	sumNum := firstNum + secondNum
 	fmt.Print("Сумма чисел равна: ", sumNum, ".\n")
 	for firstNum != sumNum {
@@ -22,5 +23,6 @@ func main() {
 		fmt.Print("Первое число: ", firstNum, "; \n")
 	}
 
+	// Вывод сообщения о завершении циклы.
 	fmt.Print("Цикл закончен: первое число выросло до = ", firstNum, " и теперь ровно сумме введенных чисел.")
 }
