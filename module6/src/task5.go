@@ -9,7 +9,7 @@ func main() {
 
 	var firstBasketLimit, secondBasketLimit, thirdBasketLimit, firstBasket, secondBasket, thirdBasket, basket, fullBasket int
 
-	// Ввод даных.
+	// Ввод данных.
 	fmt.Print("Введите ёмкость трёх корзин одной строкой через пробел: ")
 	fmt.Scan(&firstBasketLimit, &secondBasketLimit, &thirdBasketLimit)
 
@@ -34,7 +34,7 @@ func main() {
 			fullBasket++
 			continue
 		}
-		// Проверка на количество заполненых корзин.
+		// Проверка на количество заполненных корзин.
 		if fullBasket == 3 {
 			break
 		}
