@@ -6,6 +6,7 @@ func main() {
 	var answer string
 
 	for {
+		fmt.Println("------------------------------")
 		fmt.Print("Введите номер задания для его запуска (Q - выход): ")
 		fmt.Scan(&answer)
 

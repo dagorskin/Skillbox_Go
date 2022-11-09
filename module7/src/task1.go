@@ -8,7 +8,7 @@ import (
 func task1() {
 	fmt.Println("------------------------------")
 	fmt.Println("Задание 1. Зеркальные билеты.")
-	fmt.Println("------------------------------")
+	fmt.Println()
 
 	// Инициализация данных разных типов.
 	var startNumber int = 100000

@@ -4,8 +4,8 @@ import "fmt"
 
 func task3() {
 	fmt.Println("------------------------------")
-	fmt.Println("Задание 3. Вывод ёлочки.")
-	fmt.Println("------------------------------")
+	fmt.Println("Задание 1. Зеркальные билеты.")
+	fmt.Println()
 
 	// Инициализация данных разных типов.
 	var heightTree, weightTree int

@@ -4,8 +4,8 @@ import "fmt"
 
 func task2() {
 	fmt.Println("------------------------------")
-	fmt.Println("Задание 2. Шахматная доска.")
-	fmt.Println("------------------------------")
+	fmt.Println("Задание 1. Зеркальные билеты.")
+	fmt.Println()
 
 	// Инициализация данных разных типов.
 	var widthСhessboard, heightСhessboard, square int
