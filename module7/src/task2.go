@@ -15,7 +15,7 @@ func task2() {
 	fmt.Print("Введите высоту шахматной доски: ")
 	fmt.Scan(&heightСhessboard)
 
-	// Рисование шахматной доски.
+	// Рисование "шахматной доски".
 	for vertical := heightСhessboard; vertical != 0; vertical-- {
 		for horizontal := widthСhessboard; horizontal != 0; horizontal-- {
 			square++
