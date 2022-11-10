@@ -27,6 +27,9 @@ func task2() {
 		fmt.Print("четверг, ")
 		fallthrough
 	case "Пт", "пт":
-		fmt.Println("пятница")
+		fmt.Println("пятница;")
+	default:
+		fmt.Println("Неверный ввод! Повторите.")
+		task2()
 	}
 }
