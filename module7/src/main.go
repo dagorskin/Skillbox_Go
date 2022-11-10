@@ -8,7 +8,7 @@ func main() {
 	for {
 		fmt.Println("------------------------------")
 		fmt.Print("Введите номер задания для его запуска (Q - выход): ")
-		fmt.Scan(&answer)
+		_, _ = fmt.Scan(&answer)
 
 		switch answer {
 		case "1":
@@ -23,6 +23,8 @@ func main() {
 			return
 		case "q":
 			return
+		default:
+			fmt.Println("Такого номера задания нет! Повторите ввод.")
 		}
 	}
 }
