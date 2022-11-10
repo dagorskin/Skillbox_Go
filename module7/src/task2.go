@@ -19,10 +19,18 @@ func task2() {
 	for vertical := heightChessboard; vertical != 0; vertical-- {
 		for horizontal := widthChessboard; horizontal != 0; horizontal-- {
 			square++
-			if square%2 == 0 {
-				fmt.Print("*")
+			if widthChessboard != heightChessboard {
+				if square%2 == 0 {
+					fmt.Print("*")
+				} else {
+					fmt.Print(" ")
+				}
 			} else {
-				fmt.Print(" ")
+				if square%2 != 0 {
+					fmt.Print(" ")
+				} else {
+					fmt.Print("*")
+				}
 			}
 		}
 		fmt.Println("")
