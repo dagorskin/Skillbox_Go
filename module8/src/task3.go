@@ -12,9 +12,10 @@ func task3() {
 	var bills, cashSum, change int
 
 	for {
-		fmt.Print("Введите купюру покупателя: ")
+		fmt.Print("Введите купюру нового покупателя: ")
 		_, _ = fmt.Scan(&bills)
 
+		// Проверки на ввод.
 		switch {
 		case bills < 5:
 			fmt.Println("Слишком маленькая сумма для покупки лимонада.")
@@ -28,23 +29,28 @@ func task3() {
 			cashSum += 5
 			lemonadeChange = append(lemonadeChange, bills)
 			change = bills - 5
+		default:
+			fmt.Println("Такую сумму не разменять!")
 		}
 
+		// Проверки на "погашение" долга клиенту в виде сдачи.
 	leaveSecondFor:
-		for {
+		for i := len(lemonadeChange) - 1; i >= 0; i-- {
 			switch {
-			case change >= 20 && change%20 == 0:
+			case lemonadeChange[i] == 20 && change >= 20:
 				change -= 20
-			case change >= 10 && change%10 == 0:
+			case lemonadeChange[i] == 10 && change >= 10:
 				change -= 10
-			case change >= 5 && change%5 == 0:
+			case lemonadeChange[i] == 5 && change >= 5 && change%5 == 0:
 				change -= 5
 			case change == 0:
 				break leaveSecondFor
 			}
 		}
 
-		fmt.Println(cashSum, change)
+		// Вывод результата.
+		fmt.Printf("В кассе %v рублей, а долг перед покупателем %v рублей;\n", cashSum, change)
+		fmt.Println()
 
 	}
 }
