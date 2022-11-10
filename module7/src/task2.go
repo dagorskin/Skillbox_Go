@@ -8,16 +8,16 @@ func task2() {
 	fmt.Println()
 
 	// Инициализация данных разных типов.
-	var widthСhessboard, heightСhessboard, square int
+	var widthChessboard, heightChessboard, square int
 	// Ввод данных.
 	fmt.Print("Введите ширину шахматной доски: ")
-	fmt.Scan(&widthСhessboard)
+	_, _ = fmt.Scan(&widthChessboard)
 	fmt.Print("Введите высоту шахматной доски: ")
-	fmt.Scan(&heightСhessboard)
+	_, _ = fmt.Scan(&heightChessboard)
 
 	// Рисование "шахматной доски".
-	for vertical := heightСhessboard; vertical != 0; vertical-- {
-		for horizontal := widthСhessboard; horizontal != 0; horizontal-- {
+	for vertical := heightChessboard; vertical != 0; vertical-- {
+		for horizontal := widthChessboard; horizontal != 0; horizontal-- {
 			square++
 			if square%2 == 0 {
 				fmt.Print("*")

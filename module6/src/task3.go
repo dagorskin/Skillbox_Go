@@ -11,9 +11,9 @@ func main() {
 
 	// Ввод данных.
 	fmt.Print("Введите стоимость товара: ")
-	fmt.Scan(&priceInput)
+	_, _ = fmt.Scan(&priceInput)
 	fmt.Print("Введите размер скидки в процентах: ")
-	fmt.Scan(&discountInput)
+	_, _ = fmt.Scan(&discountInput)
 
 	discount := discountInput * priceInput / 100
 

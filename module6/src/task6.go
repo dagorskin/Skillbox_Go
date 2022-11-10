@@ -20,17 +20,16 @@ func main() {
 		// Ввод данных о людях нуждающихся в услугах лифта.
 		if numberPeopleInElevator == 0 && quantityPeopleGroundFloor == 0 && quantityPeopleTheFloors == 0 {
 			fmt.Print("Сколько человек хотят воспользоваться лифтом на первом этаже? ")
-			fmt.Scan(&quantityPeopleGroundFloor)
-
+			_, _ = fmt.Scan(&quantityPeopleGroundFloor)
 			fmt.Print("Сколько человек хотят воспользоваться лифтом других этажах? ")
-			fmt.Scan(&quantityPeopleTheFloors)
+			_, _ = fmt.Scan(&quantityPeopleTheFloors)
 
 			//  Добавление людей на этажах в срез.
 			if quantityPeopleTheFloors != 0 {
 				fmt.Print("Перечислите эти этажи: ")
 				for i := quantityPeopleTheFloors; i > 0; i-- {
 					var tempPeople int
-					fmt.Scan(&tempPeople)
+					_, _ = fmt.Scan(&tempPeople)
 					floors = append(floors, tempPeople)
 				}
 			}

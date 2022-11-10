@@ -11,7 +11,7 @@ func task1() {
 	fmt.Println()
 
 	// Инициализация данных разных типов.
-	var startNumber int = 100000
+	var startNumber = 100000
 	var num1, num2, num3, num4, num5, num6, mirrorDigitCounter int
 
 	// Для расчета скорости работы программы.

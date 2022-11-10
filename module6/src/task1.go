@@ -11,9 +11,9 @@ func main() {
 
 	// Ввод данных.
 	fmt.Print("Введите число ОТ которого будет вестись отчет: ")
-	fmt.Scan(&startNum)
+	_, _ = fmt.Scan(&startNum)
 	fmt.Print("Введите число ДО которого будет вестись отчет: ")
-	fmt.Scan(&endNumber)
+	_, _ = fmt.Scan(&endNumber)
 
 	// Ветвление в зависимости от большего числа, которое ввел пользователь.
 	if startNum < endNumber {

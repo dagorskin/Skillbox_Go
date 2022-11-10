@@ -11,9 +11,9 @@ func main() {
 
 	// Ввод данных.
 	fmt.Print("Введите первое число: ")
-	fmt.Scan(&firstNum)
+	_, _ = fmt.Scan(&firstNum)
 	fmt.Print("Введите второе число: ")
-	fmt.Scan(&secondNum)
+	_, _ = fmt.Scan(&secondNum)
 
 	// Сам цикл.
 	sumNum := firstNum + secondNum

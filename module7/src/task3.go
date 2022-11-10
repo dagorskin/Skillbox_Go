@@ -12,7 +12,7 @@ func task3() {
 
 	// Ввод данных.
 	fmt.Print("Введите высоту ёлочки: ")
-	fmt.Scan(&heightTree)
+	_, _ = fmt.Scan(&heightTree)
 	weightTree = heightTree*2 - 1
 	before := heightTree - 2
 	after := weightTree - (heightTree - 1)

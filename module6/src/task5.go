@@ -11,7 +11,7 @@ func main() {
 
 	// Ввод данных.
 	fmt.Print("Введите ёмкость трёх корзин одной строкой через пробел: ")
-	fmt.Scan(&firstBasketLimit, &secondBasketLimit, &thirdBasketLimit)
+	_, _ = fmt.Scan(&firstBasketLimit, &secondBasketLimit, &thirdBasketLimit)
 
 	// Заполнение корзин.
 	for {
