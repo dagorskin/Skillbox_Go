@@ -19,9 +19,7 @@ func main() {
 			task3()
 		case "4":
 			task4()
-		case "Q":
-			return
-		case "q":
+		case "Q", "q":
 			return
 		default:
 			fmt.Println("Такого номера задания нет! Повторите ввод.")
