@@ -11,23 +11,24 @@ func task1() {
 	fmt.Println()
 
 	// Инициализация данных разных типов.
-	var startNumber = 100000
-	var num1, num2, num3, num4, num5, num6, mirrorDigitCounter int
+	const startNumberTicket = 100000
+	var mirrorDigitCounter, firstPartTicket, lastChar, reversedSecondPartTicket int
 
 	// Для расчета скорости работы программы.
 	start := time.Now()
 
 	// Подсчет количества зеркальных билетов.
-	for startNumber <= 999999 {
-		num1 = startNumber / 100000
-		num2 = startNumber / 10000 % 10
-		num3 = startNumber / 1000 % 10
-		num4 = startNumber / 100 % 10
-		num5 = startNumber / 10 % 10
-		num6 = startNumber % 10
-		startNumber++
+	for ticket := startNumberTicket; ticket <= 999999; ticket++ {
+		firstPartTicket = ticket / 1000
+		reversedSecondPartTicket = 0
+		ticketNew := ticket
+		for i := 3; i != 0; i-- {
+			lastChar = ticketNew % 10
+			reversedSecondPartTicket = reversedSecondPartTicket*10 + lastChar
+			ticketNew = ticketNew / 10
+		}
 
-		if num1 == num6 && num2 == num5 && num3 == num4 {
+		if firstPartTicket == reversedSecondPartTicket {
 			mirrorDigitCounter++
 		}
 	}

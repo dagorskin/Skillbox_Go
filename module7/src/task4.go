@@ -4,7 +4,7 @@ import "fmt"
 
 func task4() {
 	fmt.Println("------------------------------")
-	fmt.Println("Задание 1. Зеркальные билеты.")
+	fmt.Println("Задание 4 (по желанию). Счастливые билеты.")
 	fmt.Println()
 
 	// Инициализация данных разных типов.
@@ -13,21 +13,18 @@ func task4() {
 		maxLimit int = 999999
 	)
 	var (
-		luckyTicketOld, luckyTicketNew, firstPartTicket, endPartTicket, sumDigitFirstPartTicket,
-		sumDigitEndPartTicket, distanceBetweenTicketsOld, distanceBetweenTicketsNew int
+		luckyTicketNew, sumDigitFirstPartTicket, sumDigitEndPartTicket,
+		distanceBetweenTicketsOld, distanceBetweenTicketsNew int
 	)
-	luckyTicketOld = minLimit
+	luckyTicketOld := minLimit
 
-	for ticket := minLimit; ticket <= maxLimit; ticket++ {
-		luckyTicketNew = ticket
-		firstPartTicket = luckyTicketNew / 1000
-		endPartTicket = luckyTicketNew % 1000
+	for luckyTicketNew = minLimit; luckyTicketNew <= maxLimit; luckyTicketNew++ {
+		tempLuckyTicketNew := luckyTicketNew
 
 		for i := 3; i != 0; i-- {
-			sumDigitFirstPartTicket = sumDigitFirstPartTicket + firstPartTicket%10
-			firstPartTicket /= 10
-			sumDigitEndPartTicket = sumDigitEndPartTicket + endPartTicket%10
-			endPartTicket /= 10
+			sumDigitFirstPartTicket += tempLuckyTicketNew % 10
+			sumDigitEndPartTicket += tempLuckyTicketNew / 1000 % 10
+			tempLuckyTicketNew /= 10
 		}
 
 		// Определение большего номера билета и расстояния
