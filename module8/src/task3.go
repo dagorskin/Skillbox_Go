@@ -8,6 +8,11 @@ func task3() {
 	fmt.Println()
 
 	// Ввод данных.
+	const (
+		fiveRuble   = 5
+		tenRuble    = 10
+		twentyRuble = 20
+	)
 	var lemonadeChange []int
 	var bills, cashSum, change int
 
@@ -17,18 +22,18 @@ func task3() {
 
 		// Проверки на ввод.
 		switch {
-		case bills < 5:
+		case bills < fiveRuble:
 			fmt.Println("Слишком маленькая сумма для покупки лимонада.")
-		case bills-5 > cashSum:
+		case bills-fiveRuble > cashSum:
 			fmt.Println("В кассе нет столько денег чтобы дать сдачу.")
-		case bills == 5:
+		case bills == fiveRuble:
 			fmt.Println("Продажа прошла успешно, сдача ненужна.")
-			cashSum += 5
+			cashSum += fiveRuble
 			lemonadeChange = append(lemonadeChange, bills)
-		case bills%5 == 0 || bills%10 == 0 || bills%20 == 0:
-			cashSum += 5
+		case bills%fiveRuble == 0 || bills%tenRuble == 0 || bills%twentyRuble == 0:
+			cashSum += fiveRuble
 			lemonadeChange = append(lemonadeChange, bills)
-			change = bills - 5
+			change = bills - fiveRuble
 		default:
 			fmt.Println("Такую сумму не разменять!")
 		}
@@ -37,12 +42,12 @@ func task3() {
 	leaveSecondFor:
 		for i := len(lemonadeChange) - 1; i >= 0; i-- {
 			switch {
-			case lemonadeChange[i] == 20 && change >= 20:
-				change -= 20
-			case lemonadeChange[i] == 10 && change >= 10:
-				change -= 10
-			case lemonadeChange[i] == 5 && change >= 5 && change%5 == 0:
-				change -= 5
+			case lemonadeChange[i] == twentyRuble && change >= twentyRuble:
+				change -= twentyRuble
+			case lemonadeChange[i] == tenRuble && change >= tenRuble:
+				change -= tenRuble
+			case lemonadeChange[i] == fiveRuble && change >= fiveRuble && change%fiveRuble == 0:
+				change -= fiveRuble
 			case change == 0:
 				break leaveSecondFor
 			}
