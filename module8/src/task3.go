@@ -9,9 +9,9 @@ func task3() {
 
 	// Ввод данных.
 	const (
-		fiveRuble   = 5
-		tenRuble    = 10
-		twentyRuble = 20
+		fiveDollars   = 5
+		tenDollars    = 10
+		twentyDollars = 20
 	)
 	var lemonadeChange []int
 	var bills, cashSum, change int
@@ -22,18 +22,18 @@ func task3() {
 
 		// Проверки на ввод.
 		switch {
-		case bills < fiveRuble:
+		case bills < fiveDollars:
 			fmt.Println("Слишком маленькая сумма для покупки лимонада.")
-		case bills-fiveRuble > cashSum:
+		case bills-fiveDollars > cashSum:
 			fmt.Println("В кассе нет столько денег чтобы дать сдачу.")
-		case bills == fiveRuble:
+		case bills == fiveDollars:
 			fmt.Println("Продажа прошла успешно, сдача ненужна.")
-			cashSum += fiveRuble
+			cashSum += fiveDollars
 			lemonadeChange = append(lemonadeChange, bills)
-		case bills%fiveRuble == 0 || bills%tenRuble == 0 || bills%twentyRuble == 0:
-			cashSum += fiveRuble
+		case bills%fiveDollars == 0 || bills%tenDollars == 0 || bills%twentyDollars == 0:
+			cashSum += fiveDollars
 			lemonadeChange = append(lemonadeChange, bills)
-			change = bills - fiveRuble
+			change = bills - fiveDollars
 		default:
 			fmt.Println("Такую сумму не разменять!")
 		}
@@ -42,19 +42,19 @@ func task3() {
 	leaveSecondFor:
 		for i := len(lemonadeChange) - 1; i >= 0; i-- {
 			switch {
-			case lemonadeChange[i] == twentyRuble && change >= twentyRuble:
-				change -= twentyRuble
-			case lemonadeChange[i] == tenRuble && change >= tenRuble:
-				change -= tenRuble
-			case lemonadeChange[i] == fiveRuble && change >= fiveRuble && change%fiveRuble == 0:
-				change -= fiveRuble
+			case lemonadeChange[i] == twentyDollars && change >= twentyDollars:
+				change -= twentyDollars
+			case lemonadeChange[i] == tenDollars && change >= tenDollars:
+				change -= tenDollars
+			case lemonadeChange[i] == fiveDollars && change >= fiveDollars && change%fiveDollars == 0:
+				change -= fiveDollars
 			case change == 0:
 				break leaveSecondFor
 			}
 		}
 
 		// Вывод результата.
-		fmt.Printf("В кассе %v рублей, а долг перед покупателем %v рублей;\n", cashSum, change)
+		fmt.Printf("В кассе %v долларов, а долг перед покупателем %v долларов;\n", cashSum, change)
 		fmt.Println()
 
 	}
