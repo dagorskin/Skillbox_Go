@@ -50,7 +50,7 @@ func task2() {
 			printResult(multiplicationInputNumbers, "int16")
 		case math.MinInt32 <= multiplicationInputNumbers && multiplicationInputNumbers < math.MaxInt32:
 			printResult(multiplicationInputNumbers, "int32")
-		case math.MinInt64 <= multiplicationInputNumbers && multiplicationInputNumbers < math.MaxInt64:
+		default:
 			printResult(multiplicationInputNumbers, "int64")
 		}
 	}
