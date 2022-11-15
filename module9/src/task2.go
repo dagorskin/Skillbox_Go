@@ -32,13 +32,13 @@ func task2() {
 	if inputNumberOne >= 0 && inputNumberTwo >= 0 {
 		multiplicationInputNumbers := uint64(inputNumberOne) * uint64(inputNumberTwo)
 		switch {
-		case 0 <= multiplicationInputNumbers && multiplicationInputNumbers < math.MaxUint8:
+		case multiplicationInputNumbers < math.MaxUint8:
 			printResultU(multiplicationInputNumbers, "uint8")
-		case 0 <= multiplicationInputNumbers && multiplicationInputNumbers < math.MaxUint16:
+		case multiplicationInputNumbers < math.MaxUint16:
 			printResultU(multiplicationInputNumbers, "uint16")
-		case 0 <= multiplicationInputNumbers && multiplicationInputNumbers < math.MaxUint32:
+		case multiplicationInputNumbers < math.MaxUint32:
 			printResultU(multiplicationInputNumbers, "uint32")
-		case 0 <= multiplicationInputNumbers:
+		default:
 			printResultU(multiplicationInputNumbers, "uint64")
 		}
 	} else {
