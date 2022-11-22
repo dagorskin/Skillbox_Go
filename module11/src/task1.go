@@ -14,6 +14,7 @@ func task1() {
 	fmt.Println("<Go is an Open source programming Language that makes it Easy to build simple, " +
 		"reliable, and efficient Software.>")
 
+	// Инициализация.
 	var (
 		countUppercase uint8
 		wordAfter      string
@@ -23,6 +24,7 @@ func task1() {
 			"reliable, and efficient Software"
 	)
 
+	// Основной цикл.
 	for len(textInput) > 0 {
 		textInput = strings.Trim(textInput, " ")
 		spacePosition = int8(strings.Index(textInput, " "))
@@ -45,5 +47,8 @@ func task1() {
 
 		textInput = textInput[spacePosition:]
 	}
+
+	// Вывод результата
 	fmt.Printf("Строка содержит %d слов с большой буквы.\n", countUppercase)
+
 }
