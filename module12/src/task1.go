@@ -1,0 +1,53 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"time"
+)
+
+// Scanner Запись произвольного текста.
+func Scanner() string {
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Printf("Введите какой-либо произвольный текст (exit = выход): ")
+	scanner.Scan()
+	return scanner.Text()
+}
+
+// task1 Основная функция.
+func task1() {
+	fmt.Println("------------------------------")
+	fmt.Println("Задание 1. Работа с файлами.")
+	fmt.Println()
+
+	// Инициализация.
+	var (
+		dataInput    string
+		dataWrite    string
+		numberString uint32
+	)
+
+	for {
+		dataInput = Scanner()
+		if dataInput == "exit" {
+			return
+		} else {
+			numberString++
+		}
+		timeNow := time.Now().Format("2006-01-02 15:04:05")
+		dataWrite = strconv.Itoa(int(numberString)) + ") " + timeNow + " " + dataInput + "\n"
+		file, err := os.OpenFile("file.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+		if err != nil {
+			fmt.Println("Файл не создан! Повторите.")
+			continue
+		}
+		defer file.Close()
+
+		if _, err = file.WriteString(dataWrite); err != nil {
+			panic(err)
+		}
+		fmt.Println("Запись прошла успешно...")
+	}
+}
