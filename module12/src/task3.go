@@ -5,6 +5,21 @@ import (
 	"os"
 )
 
+// Создание файла с допуском 0444
+func secondOpen(nameFile string) {
+	file, err := os.Open(nameFile + ".txt")
+	var fileWrite string
+	fmt.Print("Введите текст для записи в файл: ")
+	_, _ = fmt.Scan(&fileWrite)
+
+	if _, err = file.WriteString(fileWrite); err != nil {
+		fmt.Println("Доступ запрещен. Ошибка:", err)
+
+	} else {
+		fmt.Println("Запись прошла успешно.")
+	}
+}
+
 func task3() {
 	fmt.Println("------------------------------")
 	fmt.Println("Задание 3. Уровни доступа.")
@@ -18,16 +33,8 @@ func task3() {
 	if err = os.Chmod(nameFile+".txt", 0444); err != nil {
 		fmt.Println("Создать файл не получилось!")
 	}
-
 	defer file.Close()
 
-	var fileWrite string
-	fmt.Print("Введите текст для записи в файл: ")
-	_, _ = fmt.Scan(&fileWrite)
+	secondOpen(nameFile)
 
-	if _, err = file.WriteString(fileWrite); err != nil {
-		panic(err)
-	} else {
-		fmt.Println("Запись прошла успешно.")
-	}
 }
