@@ -4,15 +4,16 @@ import (
 	"fmt"
 )
 
-func calculations(numberFrom *int, numberUpTo *int, result *int) {
-	if *numberFrom > *numberUpTo {
+func calculations(numberFrom int, numberUpTo int, result int) int {
+	if numberFrom > numberUpTo {
 		numberFrom, numberUpTo = numberUpTo, numberFrom
 	}
-	for i := *numberUpTo; i >= *numberFrom; i-- {
+	for i := numberUpTo; i >= numberFrom; i-- {
 		if i%2 == 0 {
-			*result = *result + i
+			result = result + i
 		}
 	}
+	return result
 }
 
 func task1() {
@@ -35,6 +36,6 @@ func task1() {
 		fmt.Println(err)
 	}
 
-	calculations(&numberFrom, &numberUpTo, &result)
-	fmt.Println(result)
+	result = calculations(numberFrom, numberUpTo, result)
+	fmt.Printf("Сумма чётных чисел заданного диапазона: %d.\n", result)
 }
