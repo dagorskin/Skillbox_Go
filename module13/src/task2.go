@@ -34,5 +34,4 @@ func task2() {
 	rotation(&varFirst, &varSecond)
 
 	fmt.Printf("Первое число = %d, второе число = %d.\n", varFirst, varSecond)
-
 }
