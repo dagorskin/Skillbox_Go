@@ -48,4 +48,5 @@ func task2() {
 	fmt.Println("\nИзмененные координаты координаты:")
 	fmt.Printf("Первая точка: %d, %d;\nВторая точка: %d, %d;\nТретья точка: %d, %d;\n",
 		onePointX, onePointY, twoPointX, twoPointY, threePointX, threePointY)
+
 }

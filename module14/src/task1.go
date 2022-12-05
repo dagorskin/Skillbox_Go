@@ -36,4 +36,5 @@ func task1() {
 		resultStr := "нечётным"
 		fmt.Printf("Число %d является %s числом.\n", numberInput, resultStr)
 	}
+
 }

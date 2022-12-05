@@ -39,4 +39,5 @@ func task3() {
 
 	fmt.Printf("Результаты: умножение - %d, сложение - %d.\n",
 		multiplication(firstNumberInput, secondNumberInput), summation(firstNumberInput, secondNumberInput))
+
 }
