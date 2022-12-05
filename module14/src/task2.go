@@ -17,10 +17,10 @@ func generatingPoints() int {
 }
 
 // Изменение точек с помощью формул.
-func transformation(pointXOld, pointYOld int) (pointXNew, pointYNew int) {
-	pointXNew = 2*pointXOld + 10
-	pointYNew = -3*pointYOld - 5
-	return
+func transformation(pointXOld, pointYOld int) (int, int) {
+	pointXNew := 2*pointXOld + 10
+	pointYNew := -3*pointYOld - 5
+	return pointXNew, pointYNew
 }
 
 func task2() {
