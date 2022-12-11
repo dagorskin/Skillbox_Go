@@ -2,29 +2,18 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
-func sorting(mainArr [6]int, leftChar, rightChar, count int) {
-	for index, char := range mainArr {
-		rightChar = char
-		if leftChar > rightChar {
-			if index == 0 {
-				leftChar = char
-				continue
-			} else {
-				mainArr[index], mainArr[index-1] = mainArr[index-1], mainArr[index]
-				count++
-			}
-		}
-		leftChar = char
-		if index == 0 {
-			count = 0
-		}
-		if count == 0 {
-			break
+// Один проход сортировки.
+func sorting(mainArr [6]int, swap int) ([6]int, int) {
+	swap = 0
+	for index, _ := range mainArr {
+		if index != 0 && mainArr[index] < mainArr[index-1] {
+			mainArr[index], mainArr[index-1] = mainArr[index-1], mainArr[index]
+			swap++
 		}
 	}
+	return mainArr, swap
 }
 
 func task2() {
@@ -33,7 +22,13 @@ func task2() {
 	fmt.Println()
 
 	var mainArr = [6]int{4, 5, 1, 3, 2, 6}
-	var leftChar, rightChar, count = math.MaxInt, math.MaxInt, 1
+	var oldArr = mainArr
+	var swap = 1
 
-	sorting(mainArr, leftChar, rightChar, count)
+	// Вызов функции пока переменная отвечающая за количество замен не будет равна 0.
+	for swap != 0 {
+		mainArr, swap = sorting(mainArr, swap)
+	}
+
+	fmt.Printf("Оригинальный массив: %v\nОтсортированный массив: %v\n", oldArr, mainArr)
 }
