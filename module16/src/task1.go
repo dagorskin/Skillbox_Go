@@ -4,10 +4,23 @@ import (
 	"fmt"
 )
 
+const firstArrSize = 4
+const secondArrSize = 5
+const newArrSize = firstArrSize + secondArrSize
+
 // Принимает два массива определенной длины и соединяет их в один массив, который возвращает функция.
-func concatenation(firstArr [4]int, secondArr [5]int) [9]int {
-	newArr := [9]int{firstArr[0], firstArr[1], firstArr[2], firstArr[3],
-		secondArr[0], secondArr[1], secondArr[2], secondArr[3], secondArr[4]}
+func concatenation(firstArr [firstArrSize]int, secondArr [secondArrSize]int) [9]int {
+	var newArr [newArrSize]int
+	for indexOne := 0; indexOne < len(newArr); indexOne++ {
+		if indexOne < len(firstArr) {
+			newArr[indexOne] = firstArr[indexOne]
+		} else {
+			for indexTwo := 0; indexTwo != len(secondArr); indexTwo++ {
+				newArr[indexOne] = secondArr[indexTwo]
+				indexOne++
+			}
+		}
+	}
 	return newArr
 }
 
@@ -16,8 +29,8 @@ func task1() {
 	fmt.Println("Задание 1. Слияние отсортированных массивов.")
 	fmt.Println()
 
-	var firstArr = [4]int{1, 2, 3, 4}
-	secondArr := [5]int{5, 6, 7, 8, 9}
+	var firstArr = [firstArrSize]int{1, 2, 3, 4}
+	secondArr := [secondArrSize]int{5, 6, 7, 8, 9}
 
 	fmt.Printf("Первый массив: %v, второй массив: %v;\nНовый объедененный массив: %v\n", firstArr, secondArr, concatenation(firstArr, secondArr))
 }
