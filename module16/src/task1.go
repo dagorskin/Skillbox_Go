@@ -9,50 +9,33 @@ const secondArrSize = 5
 const newArrSize = firstArrSize + secondArrSize
 
 // Принимает два массива определенной длины и соединяет их в один массив, который возвращает функция.
-func concatenation(firstArr [firstArrSize]int, secondArr [secondArrSize]int) [9]int {
-	var newArr [newArrSize]int
-	var length int
-	if len(firstArr) > len(secondArr) {
-		length = len(secondArr)
-	} else {
-		length = len(firstArr)
-	}
-	for i := 0; i < length; i++ {
-		switch {
-		case i == 0 && firstArr[0] < secondArr[0]:
-			newArr[i] = firstArr[i]
-			newArr[i+1] = secondArr[i]
-		case firstArr[i] <= secondArr[i] && firstArr[i] > secondArr[i-1]:
-			newArr[i+i-1+1] = firstArr[i]
-			newArr[i+i-1+2] = secondArr[i]
-		case firstArr[i] > secondArr[i] && firstArr[i-1] < secondArr[i]:
-			newArr[i+i-1+1] = secondArr[i]
-			newArr[i+i-1+2] = firstArr[i]
-		case firstArr[i] <= secondArr[i] && firstArr[i] < secondArr[i-1]:
-			firstArr[i], secondArr[i-1] = secondArr[i-1], firstArr[i]
-			newArr[i+i-1] = secondArr[i-1]
-			newArr[i+i] = firstArr[i]
-			newArr[i+i+1] = secondArr[i]
-		case firstArr[i] > secondArr[i] && firstArr[i-1] > secondArr[i]:
-			firstArr[i-1], secondArr[i] = secondArr[i], firstArr[i-1]
-			newArr[i+i-1] = firstArr[i-1]
-			newArr[i+i] = secondArr[i]
-			newArr[i+i+1] = firstArr[i]
-		}
-	}
+func concatenation(firstArr [firstArrSize]int, secondArr [secondArrSize]int) (newArr [newArrSize]int) {
 
-	if len(firstArr) < len(secondArr) {
-		if secondArr[len(firstArr)] <= firstArr[len(firstArr)-1] {
-			newArr[len(firstArr)*2-1], newArr[len(firstArr)*2] = secondArr[len(firstArr)], firstArr[(len(firstArr)-1)]
+	var indexOne, indexTwo, total int
+
+	for indexOne < firstArrSize && indexTwo < secondArrSize {
+		if firstArr[indexOne] < secondArr[indexTwo] {
+			newArr[total] = firstArr[indexOne]
+			indexOne++
 		} else {
-			newArr[len(firstArr)*2] = secondArr[len(secondArr)-1]
+			newArr[total] = secondArr[indexTwo]
+			indexTwo++
 		}
-
-		for i := firstArr[len(firstArr)-1]; i < len(newArr); i++ {
-			newArr[len(firstArr)*2] = secondArr[i]
-		}
+		total++
 	}
-	return newArr
+
+	for indexOne < firstArrSize {
+		newArr[total] = firstArr[indexOne]
+		indexOne++
+		total++
+	}
+
+	for indexTwo < secondArrSize {
+		newArr[total] = secondArr[indexTwo]
+		indexTwo++
+		total++
+	}
+	return
 }
 
 func task1() {
