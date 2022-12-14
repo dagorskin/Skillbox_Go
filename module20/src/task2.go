@@ -10,27 +10,24 @@ const (
 	mx5x4Column = 4
 )
 
-func matrixMultiplicationFirst(matrix3x5 [mx3x5Row][mx3x5Column]int, matrix5x4 [mx5x4Row][mx5x4Column]int) (result [3][4]int) {
+func matrixMultiplicationFirst(matrix3x5 [mx3x5Row][mx3x5Column]int, matrix5x4 [mx5x4Row][mx5x4Column]int) (result [mx3x5Row][mx5x4Column]int) {
 
-	var i, j, l, k int
+	var j, k, l int
 	var tempResult int
 
 now:
-	for i = 0; i < mx3x5Row; i++ {
-		for j = 0; j < mx3x5Column; j++ {
-			for l = 0; l < mx5x4Column; l++ {
-				for k = 0; k < mx5x4Row; k++ {
-					if j < mx3x5Row {
-						tempResult += matrix3x5[j][k] * matrix5x4[k][l]
-					} else {
-						break now
-					}
+	for j = 0; j < mx3x5Column; j++ {
+		for k = 0; k < mx5x4Column; k++ {
+			for l = 0; l < mx5x4Row; l++ {
+				if j < mx3x5Row {
+					tempResult += matrix3x5[j][l] * matrix5x4[l][k]
+				} else {
+					break now
 				}
-				result[j][l] = tempResult
-				tempResult = 0
 			}
+			result[j][k] = tempResult
+			tempResult = 0
 		}
-
 	}
 	return
 }
@@ -53,5 +50,10 @@ func task2() {
 		{5, 7, 4, 8},
 	}
 
-	fmt.Println(matrixMultiplicationFirst(matrix3x5, matrix5x4))
+	var result = matrixMultiplicationFirst(matrix3x5, matrix5x4)
+
+	fmt.Println("Результат умножения матриц: ")
+	for row := 0; row < len(result); row++ {
+		fmt.Println(result[row])
+	}
 }
