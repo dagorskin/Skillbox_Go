@@ -37,11 +37,13 @@ func task2() {
 	fmt.Println("Задание 2. Умножение матриц.")
 	fmt.Println()
 
+	// Матрица размера 3х5.
 	var matrix3x5 = [mx3x5Row][mx3x5Column]int{
 		{5, 6, 8, 1, 7},
 		{4, 1, 2, 3, 4},
 		{9, 7, 6, 3, 1},
 	}
+	// Матрица размера 5х4.
 	var matrix5x4 = [mx5x4Row][mx5x4Column]int{
 		{3, 2, 4, 8},
 		{6, 3, 9, 1},
