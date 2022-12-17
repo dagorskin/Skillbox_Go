@@ -8,7 +8,7 @@ import (
 
 const lengthNew = 12
 
-func generationArrSorted()(array [lengthNew] int) {
+func generationArrSorted() (array [lengthNew]int) {
 	rand.Seed(time.Now().UnixNano())
 	var tempNumber, count, randomNumber int
 	randomNumber = 3
@@ -30,12 +30,18 @@ func generationArrSorted()(array [lengthNew] int) {
 	return
 }
 
-func numberSearchNew(array[lengthNew]int, desiredNumberNew int) (result int) {
+func numberSearchNew(array [lengthNew]int, desiredNumberNew int) (result int) {
 	result = -1
-	for index, number := range array {
-		if number == desiredNumberNew {
-			result = index
+	min, max, middle := 0, length-1, 0
+	for max >= min {
+		middle = (max + min) / 2
+		if array[middle] == desiredNumberNew {
+			result = middle
 			break
+		} else if array[middle] > (max+min)/2 {
+			max = middle - 1
+		} else {
+			min = middle + 1
 		}
 	}
 	return
@@ -48,13 +54,14 @@ func task2() {
 
 	var desiredNumberNew, result int
 
+	array := generationArrSorted()
+	fmt.Printf("Используемый массив:\n%v\n", array)
+
 	fmt.Print("Введите число: ")
 	_, _ = fmt.Scan(&desiredNumberNew)
 
-	array := generationArrSorted()
 	result = numberSearchNew(array, desiredNumberNew)
 
-	fmt.Printf("Используемый массив:\n%v\n", array)
 	if result == -1 {
 		fmt.Println("Такого числа нет в массиве!")
 	} else {
