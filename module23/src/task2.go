@@ -28,6 +28,7 @@ func task2() {
 			count = 0
 		}
 
+		// Переворот массива.
 		for i, start, finish := 0, 0, arrayLength-1; i < arrayLength/2; i, start, finish = i+1, start+1, finish-1 {
 			intArray[start], intArray[finish] = intArray[finish], intArray[start]
 		}
@@ -38,7 +39,7 @@ func task2() {
 	// Второй вариант - сортировка ("вставками") с одновременным построением массива по убыванию.
 	secondAnonymousFunction := func(intArray [arrayLength]int) [arrayLength]int {
 		var digit, count int
-		for index := 2; index < len(intArray); index++ {
+		for index := 2; index < arrayLength; index++ {
 			digit = intArray[index]
 			count = index - 1
 			for count >= 0 && intArray[count] < digit {
