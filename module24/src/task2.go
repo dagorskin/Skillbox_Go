@@ -27,7 +27,6 @@ func task2() {
 	chars := [5]rune{'H', 'E', 'L', 'П', 'М'}
 
 	result := finding(sentences, chars)
-	fmt.Println("Результат поиска букв в строках:\n", result)
 
 	fmt.Println("\nРезультат первого элемента:")
 	for i := 0; i != 5; i++ {
