@@ -1,13 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
-func finding(sentences [4]string, chars [5]rune) (result [5][5]int) {
-	for i := 0; i < 5; i++ {
-		for j := 0; j < 4; j++ {
-			for index, char := range sentences[j] {
-				if chars[i] == char {
-					result[i][j] = index
+func finding(sentences [4]string, chars [5]rune) (result [4][5]int) {
+	for indexString, letter := range sentences {
+		for indexWord, word := range letter {
+			for indexRune, char := range chars {
+				if strings.ToLower(string(char)) == strings.ToLower(string(word)) {
+					result[indexString][indexRune] = indexWord
 				}
 			}
 		}
