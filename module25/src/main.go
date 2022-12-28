@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"strings"
 	"time"
 )
 
@@ -13,12 +12,28 @@ func flags(stringForSearch *string, substringSearched *string) {
 	flag.Parse()
 }
 
+func searching(stringInput string, substring string) (result bool) {
+
+	runeStr := []rune(stringInput)
+	runeSub := []rune(substring)
+
+	for i, j := 0, len(runeSub); j < len(runeStr); i, j = i+1, j+1 {
+		if string(runeStr[i:j]) == string(runeSub[:]) {
+			return true
+		}
+	}
+	return
+}
+
 func main() {
 	var stringForSearch, substringSearched string
 
 	flags(&stringForSearch, &substringSearched)
 
-	result := strings.Contains(stringForSearch, substringSearched)
+	// Простой способ поиска подстроки в строке.
+	//result := strings.Contains(stringForSearch, substringSearched)
+
+	result := searching(stringForSearch, substringSearched)
 
 	if stringForSearch == "unidentified" || substringSearched == "unidentified" {
 		fmt.Println("Один из аргументов команды пуст, поиск невозможен.")
