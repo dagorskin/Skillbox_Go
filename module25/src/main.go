@@ -30,7 +30,7 @@ func main() {
 
 	flags(&stringForSearch, &substringSearched)
 
-	// Простой способ поиска подстроки в строке.
+	//Простой способ поиска подстроки в строке.
 	//result := strings.Contains(stringForSearch, substringSearched)
 
 	result := searching(stringForSearch, substringSearched)
