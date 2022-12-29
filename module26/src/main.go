@@ -9,10 +9,10 @@ import (
 
 // Создание флагов.
 func flags(fileOneName *string, fileOneContent *string, fileTwoName *string, fileTwoContent *string) {
-	flag.StringVar(fileOneName, "fname", "unidentified1", "set first")
-	flag.StringVar(fileOneContent, "fcontent", "unidentified2", "set fcontent")
-	flag.StringVar(fileTwoName, "sname", "unidentified3", "set second")
-	flag.StringVar(fileTwoContent, "scontent", "unidentified4", "set scontent")
+	flag.StringVar(fileOneName, "fname", "unidentified", "set first")
+	flag.StringVar(fileOneContent, "fcontent", "unidentified", "set fcontent")
+	flag.StringVar(fileTwoName, "sname", "unidentified", "set second")
+	flag.StringVar(fileTwoContent, "scontent", "unidentified", "set scontent")
 	flag.Parse()
 }
 
@@ -55,15 +55,19 @@ func main() {
 	flags(&fileOneName, &fileOneContent, &fileTwoName, &fileTwoContent)
 
 	switch {
-	case fileOneName != "unidentified" && fileTwoName == "unidentified":
+	case fileOneName != "unidentified" && fileTwoName == "unidentified": // Если только первый файл имеет данные.
 		creationAndWrite(fileOneName, fileOneContent)
 		fmt.Println("Только контент первого файла:", string(readFile(fileOneName)))
 
-	case fileOneName == "unidentified" && fileTwoName != "unidentified":
+	case fileOneName == "unidentified" && fileTwoName != "unidentified": // Если только второй файл имеет данные.
 		creationAndWrite(fileTwoName, fileTwoContent)
 		fmt.Println("Только контент второго файла:", string(readFile(fileTwoName)))
 
-	default:
+	case fileOneName == "unidentified" && fileTwoName == "unidentified": // Если ничего не введено.
+		fmt.Println("Все параметры запуска пусты, программа завершает работу.")
+		os.Exit(0)
+
+	default: // Если введены все данные.
 		creationAndWrite(fileOneName, fileOneContent)
 		creationAndWrite(fileTwoName, fileTwoContent)
 
