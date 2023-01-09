@@ -16,17 +16,22 @@ type Student struct {
 	grade int
 }
 
-// Метод добавления студента в хэш-карту.
-func put(students map[string]*Student, student *Student) {
-	students[student.name] = student
+type Transfer interface {
+	Put(student *Student, students map[string]*Student)
+	Get() (*Student, error)
 }
 
-// Метод запрашивает имя студента из хэш-карты.
-func get(students map[string]*Student, name string) (*Student, error) {
-	if students[name] == nil {
+// Put метод добавления студента в хэш-карту.
+func (s Student) Put(student *Student, students map[string]*Student) {
+	students[s.name] = student
+}
+
+// Get метод запрашивает имя студента из хэш-карты.
+func (s Student) Get(students map[string]*Student) (*Student, error) {
+	if students[s.name] == nil {
 		return nil, errors.New("ошибка: студент не был найден в списке")
 	} else {
-		return students[name], nil
+		return students[s.name], nil
 	}
 }
 
@@ -74,8 +79,8 @@ func main() {
 			grade: studentGrade,
 		}
 
-		if _, err := get(students, student.name); err != nil {
-			put(students, &student)
+		if _, err := student.Get(students); err != nil {
+			student.Put(&student, students)
 		} else {
 			fmt.Println("Студент с таким именем уже есть в списке! Повторите снова.")
 		}
