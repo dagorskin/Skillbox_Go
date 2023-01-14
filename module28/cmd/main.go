@@ -11,55 +11,78 @@ import (
 	"strings"
 )
 
-func main() {
-	studentsMap := make(map[string]*students.Student, 0) // Список студентов.
+var in = bufio.NewReader(os.Stdin)
+var student students.Student
+var position, count = 1, 1
 
-	fmt.Println("Здравствуйте! Введите имя, возраст и курс студентов через пробел:")
+type App struct {
+	repository storage.Storage
+}
 
-	var counter = 1
-	var in = bufio.NewReader(os.Stdin)
+func NewApp(repository storage.Storage) *App {
+	return &App{repository: repository}
+}
 
-	// Ввод данных о студенте.
+func (a *App) run() {
 	for {
-		line, err := in.ReadString('\n')
-
-		if err == io.EOF {
-			fmt.Println("Ввод закончен! Список студентов:")
+		if s, ok := a.inputNextStudent(); ok {
+			a.storeStudents(s)
+		} else {
+			a.printStudents()
 			break
 		}
+	}
+}
 
-		lineFields := strings.Fields(line)
+func (a *App) printStudents() {
+	studentsPrint := a.repository.Get()
+	for _, value := range studentsPrint {
+		fmt.Printf("%v. %s\n", position, value.Info())
+		position++
+	}
+}
 
-		if len(lineFields) < 3 {
-			fmt.Println("Нужно ввести все данные для продолжения! Повторите снова.")
-			continue
-		}
+func (a *App) inputNextStudent() (students.Student, bool) {
+	fmt.Println("Введите имя, возраст и курс студента:")
+	line, err := in.ReadString('\n')
+	fmt.Println()
 
-		studentName := lineFields[0]
-		studentAge, errAge := strconv.Atoi(lineFields[1])
-		studentGrade, errGrade := strconv.Atoi(lineFields[2])
-
-		if errAge != nil || errGrade != nil {
-			fmt.Println("Ошибка при вводе возраста студента и/или его курса! Повторите снова.")
-			continue
-		}
-
-		student := students.Student{
-			Name:  studentName,
-			Age:   studentAge,
-			Grade: studentGrade,
-		}
-
-		if _, err := storage.Get(studentsMap, student.Name); err != nil {
-			storage.Put(studentsMap, &student)
-		} else {
-			fmt.Println("Студент с таким именем уже есть в списке! Повторите снова.")
-		}
+	if err == io.EOF {
+		fmt.Println("Ввод закончен! Список студентов:")
+		return student, false
 	}
 
-	// Вывод всех студентов из списка.
-	for _, value := range studentsMap {
-		fmt.Printf("%v. %s\n", counter, value.Info())
-		counter++
+	lineFields := strings.Fields(line)
+
+	if len(lineFields) < 3 {
+		fmt.Println("Нужно ввести все данные для продолжения! Повторите снова.")
+		return student, false
 	}
+
+	studentName := lineFields[0]
+	studentAge, errAge := strconv.Atoi(lineFields[1])
+	studentGrade, errGrade := strconv.Atoi(lineFields[2])
+
+	if errAge != nil || errGrade != nil {
+		fmt.Println("Ошибка при вводе возраста студента и/или его курса! Повторите снова.")
+		return student, false
+	}
+
+	student = students.MakeStudent(studentName, studentAge, studentGrade)
+	count++
+	return student, true
+}
+
+func (a *App) storeStudents(student students.Student) {
+	a.repository.Put(count, student)
+}
+
+func main() {
+	repository := storage.NewMemStorage()
+
+	var app = NewApp(repository)
+
+	app.run()
+
+	fmt.Println("Завершение работы.")
 }
