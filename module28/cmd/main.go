@@ -84,5 +84,5 @@ func main() {
 
 	app.run()
 
-	fmt.Println("Завершение работы.")
+	fmt.Println("...вывод закончен...")
 }
