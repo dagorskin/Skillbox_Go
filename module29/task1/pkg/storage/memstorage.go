@@ -29,7 +29,11 @@ func (ms *MemStorage) Put(data DataString) {
 	position++
 }
 
-// Get Функция получения карты из хранилища.
-func (ms *MemStorage) Get() map[int]DataString {
-	return ms.Data
+// Get Функция получения данных из хранилища.
+func (ms *MemStorage) Get() []DataString {
+	var arrData []DataString
+	for _, value := range ms.Data {
+		arrData = append(arrData, value)
+	}
+	return arrData
 }

@@ -19,10 +19,17 @@ func NewApp(repository storage.Storage) *App {
 
 // Run Функция запуска программы.
 func (a *App) Run() {
+	squareChan := make(chan int)
+
 	for {
 		if number, ok := input.Input(); ok {
-			stringData := storage.DataString{InputNum: number, SquareRes: calculations.Square(number),
-				MultiplyRes: calculations.Multiply(calculations.Square(number))}
+			go func() {
+				squareChan <- number
+			}()
+			squareRes, sr := calculations.Square(squareChan)
+			mp := calculations.Multiply(sr)
+			stringData := storage.DataString{InputNum: number, SquareRes: squareRes,
+				MultiplyRes: <-mp}
 			a.Store(stringData)
 		} else {
 			a.Print()

@@ -1,7 +1,12 @@
 package calculations
 
 // Square Функция высчитывания квадрата числа.
-func Square(number int) int {
+func Square(squareChan chan int) (int, chan int) {
+	multiplyChan := make(chan int)
+	number := <-squareChan
 	result := number * number
-	return result
+	go func() {
+		multiplyChan <- result
+	}()
+	return result, multiplyChan
 }
