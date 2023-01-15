@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"module28/pkg/storage"
-	"module28/pkg/students"
+	storage2 "module28/internal/storage"
+	"module28/internal/students"
 	"os"
 	"strconv"
 	"strings"
@@ -16,10 +16,10 @@ var student students.Student
 var position, count = 1, 1
 
 type App struct {
-	repository storage.Storage
+	repository storage2.Storage
 }
 
-func NewApp(repository storage.Storage) *App {
+func NewApp(repository storage2.Storage) *App {
 	return &App{repository: repository}
 }
 
@@ -78,7 +78,7 @@ func (a *App) storeStudents(student students.Student) {
 }
 
 func main() {
-	repository := storage.NewMemStorage()
+	repository := storage2.NewMemStorage()
 
 	var app = NewApp(repository)
 

@@ -1,6 +1,8 @@
 package storage
 
-import "module28/pkg/students"
+import (
+	"module28/internal/students"
+)
 
 type MemStorage struct {
 	students map[int]students.Student

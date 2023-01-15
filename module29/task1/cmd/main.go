@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	"task1/pkg/calculations"
-	"task1/pkg/input"
-	"task1/pkg/storage"
+	calculations2 "task1/internal/calculations"
+	"task1/internal/input"
+	storage2 "task1/internal/storage"
 )
 
 // App Структура программы.
 type App struct {
-	repository storage.Storage
+	repository storage2.Storage
 }
 
 // NewApp Конструктор структуры программы. Возвращает новый объект.
-func NewApp(repository storage.Storage) *App {
+func NewApp(repository storage2.Storage) *App {
 	return &App{repository: repository}
 }
 
@@ -26,9 +26,9 @@ func (a *App) Run() {
 			go func() {
 				squareChan <- number
 			}()
-			squareRes, sr := calculations.Square(squareChan)
-			mp := calculations.Multiply(sr)
-			stringData := storage.DataString{InputNum: number, SquareRes: squareRes,
+			squareRes, sr := calculations2.Square(squareChan)
+			mp := calculations2.Multiply(sr)
+			stringData := storage2.DataString{InputNum: number, SquareRes: squareRes,
 				MultiplyRes: <-mp}
 			a.Store(stringData)
 		} else {
@@ -49,13 +49,13 @@ func (a *App) Print() {
 }
 
 // Store Функция добавления числа в строку карты методом Put.
-func (a *App) Store(number storage.DataString) {
+func (a *App) Store(number storage2.DataString) {
 	a.repository.Put(number)
 }
 
 // Входная точка.
 func main() {
-	repository := storage.NewMemStorage()
+	repository := storage2.NewMemStorage()
 
 	var app = NewApp(repository)
 
